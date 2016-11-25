@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\TYPO3CR\Tests\Unit\Domain\Service;
+namespace Neos\ContentRepository\Tests\Unit\Domain\Service;
 
 /*
- * This file is part of the TYPO3.TYPO3CR package.
+ * This file is part of the Neos.ContentRepository package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -10,10 +10,10 @@ namespace TYPO3\TYPO3CR\Tests\Unit\Domain\Service;
  * information, please view the LICENSE file which was distributed with this
  * source code.
  */
-use TYPO3\Flow\Security\Context;
-use TYPO3\Flow\Tests\UnitTestCase;
-use TYPO3\TYPO3CR\Domain\Repository\ContentDimensionRepository;
-use TYPO3\TYPO3CR\Domain\Service\ContextFactory;
+use Neos\Flow\Security\Context;
+use Neos\Flow\Tests\UnitTestCase;
+use Neos\ContentRepository\Domain\Repository\ContentDimensionRepository;
+use Neos\ContentRepository\Domain\Service\ContextFactory;
 
 /**
  * Testcase for the Context
@@ -29,7 +29,7 @@ class ContextTest extends UnitTestCase
     public function setUp()
     {
         $this->contextFactory = new ContextFactory();
-        $this->inject($this->contextFactory, 'now', new \TYPO3\Flow\Utility\Now());
+        $this->inject($this->contextFactory, 'now', new \Neos\Flow\Utility\Now());
         $this->inject($this->contextFactory, 'securityContext', $this->createMock(Context::class));
 
         $mockContentDimensionRepository = $this->createMock(ContentDimensionRepository::class);

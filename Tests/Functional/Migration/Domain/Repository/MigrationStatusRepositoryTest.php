@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\TYPO3CR\Tests\Functional\Migration\Domain\Repository;
+namespace Neos\ContentRepository\Tests\Functional\Migration\Domain\Repository;
 
 /*
- * This file is part of the TYPO3.TYPO3CR package.
+ * This file is part of the Neos.ContentRepository package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -11,9 +11,9 @@ namespace TYPO3\TYPO3CR\Tests\Functional\Migration\Domain\Repository;
  * source code.
  */
 
-use TYPO3\Flow\Tests\FunctionalTestCase;
-use TYPO3\TYPO3CR\Migration\Domain\Model\MigrationStatus;
-use TYPO3\TYPO3CR\Migration\Domain\Repository\MigrationStatusRepository;
+use Neos\Flow\Tests\FunctionalTestCase;
+use Neos\ContentRepository\Migration\Domain\Model\MigrationStatus;
+use Neos\ContentRepository\Migration\Domain\Repository\MigrationStatusRepository;
 
 /**
  */

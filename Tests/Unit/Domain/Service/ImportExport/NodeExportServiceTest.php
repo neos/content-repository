@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\TYPO3CR\Tests\Unit\Domain\Service\ImportExport;
+namespace Neos\ContentRepository\Tests\Unit\Domain\Service\ImportExport;
 
 /*
- * This file is part of the TYPO3.TYPO3CR package.
+ * This file is part of the Neos.ContentRepository package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -11,11 +11,11 @@ namespace TYPO3\TYPO3CR\Tests\Unit\Domain\Service\ImportExport;
  * source code.
  */
 
-use TYPO3\Flow\Security\Context;
-use TYPO3\Flow\Tests\UnitTestCase;
-use TYPO3\TYPO3CR\Domain\Model\NodeType;
-use TYPO3\TYPO3CR\Domain\Service\ImportExport\NodeExportService;
-use TYPO3\TYPO3CR\Domain\Service\NodeTypeManager;
+use Neos\Flow\Security\Context;
+use Neos\Flow\Tests\UnitTestCase;
+use Neos\ContentRepository\Domain\Model\NodeType;
+use Neos\ContentRepository\Domain\Service\ImportExport\NodeExportService;
+use Neos\ContentRepository\Domain\Service\NodeTypeManager;
 
 /**
  * Tests for the NodeExportService class
@@ -110,7 +110,7 @@ class NodeExportServiceTest extends UnitTestCase
             '/sites/foo',
             '25eab5ec-b1dd-11e4-8823-14109fd7a2dd',
             array(
-                'nodeType' => 'TYPO3.TYPO3CR.Testing:Page',
+                'nodeType' => 'Neos.ContentRepository.Testing:Page',
                 'version' => 3,
                 'properties' => array('title' => 'Foo')
             )
@@ -120,7 +120,7 @@ class NodeExportServiceTest extends UnitTestCase
             '/sites/foo/home/about',
             '27dde996-b1dd-11e4-8909-14109fd7a2dd',
             array(
-                'nodeType' => 'TYPO3.TYPO3CR.Testing:Page',
+                'nodeType' => 'Neos.ContentRepository.Testing:Page',
                 'version' => 2,
                 'properties' => array('title' => 'About us')
             )
@@ -129,7 +129,7 @@ class NodeExportServiceTest extends UnitTestCase
         $nodeDataList = array($nodeData1, $nodeData2);
         $nodeExportService->expects($this->any())->method('findNodeDataListToExport')->will($this->returnValue($nodeDataList));
 
-        $mockPropertyMapper = $this->createMock(\TYPO3\Flow\Property\PropertyMapper::class);
+        $mockPropertyMapper = $this->createMock(\Neos\Flow\Property\PropertyMapper::class);
         $mockPropertyMapper->expects($this->any())->method('convert')->will($this->returnCallback(function ($source) {
             return $source;
         }));
@@ -141,7 +141,7 @@ class NodeExportServiceTest extends UnitTestCase
         $this->assertXmlStringEqualsXmlString('<?xml version="1.0"?>
 			<nodes formatVersion="2.0">
 			  <node identifier="25eab5ec-b1dd-11e4-8823-14109fd7a2dd" nodeName="foo">
-				<variant hidden="" hiddenInIndex="" nodeType="TYPO3.TYPO3CR.Testing:Page" removed="" sortingIndex="0" version="3" workspace="live">
+				<variant hidden="" hiddenInIndex="" nodeType="Neos.ContentRepository.Testing:Page" removed="" sortingIndex="0" version="3" workspace="live">
 				  <dimensions/>
 				  <accessRoles __type="array"/>
 				  <properties>

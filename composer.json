@@ -1,17 +1,20 @@
 {
-    "name": "typo3/typo3cr",
+    "name": "neos/content-repository",
     "type": "neos-package",
     "description": "Content repository based on Flow, specifically made for Neos.",
     "license": "GPL-3.0+",
     "require": {
-        "typo3/flow": "*",
+        "neos/flow": "*",
         "neos/fluid-adaptor": "*",
         "gedmo/doctrine-extensions": "~2.3.0",
         "behat/transliterator": "~1.0"
     },
+    "replace": {
+        "typo3/typo3cr": "self.version"
+    },
     "autoload": {
-        "psr-0": {
-            "TYPO3\\TYPO3CR": "Classes"
+        "psr-4": {
+            "Neos\\ContentRepository\\": "Classes"
         }
     },
     "extra": {
@@ -50,7 +53,23 @@
             "TYPO3.Flow-20151113161300",
             "TYPO3.Form-20160601101500",
             "TYPO3.Flow-20161115140400",
-            "TYPO3.Flow-20161115140430"
+            "TYPO3.Flow-20161115140430",
+            "Neos.Flow-20161124204700",
+            "Neos.Flow-20161124204701",
+            "Neos.Twitter.Bootstrap-20161124204912",
+            "Neos.Form-20161124205254",
+            "Neos.Flow-20161124224015",
+            "Neos.Party-20161124225257",
+            "Neos.Eel-20161124230101",
+            "Neos.Kickstart-20161124230102",
+            "Neos.Setup-20161124230842",
+            "Neos.Imagine-20161124231742",
+            "Neos.Media-20161124233100",
+            "Neos.NodeTypes-20161125002300",
+            "Neos.SiteKickstarter-20161125002311",
+            "Neos.Neos-20161125002322",
+            "Neos.ContentRepository-20161125012000",
+            "Neos.Fusion-20161125013710"
         ]
     }
 }

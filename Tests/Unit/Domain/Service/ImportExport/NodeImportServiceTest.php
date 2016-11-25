@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\TYPO3CR\Tests\Unit\Domain\Service\ImportExport;
+namespace Neos\ContentRepository\Tests\Unit\Domain\Service\ImportExport;
 
 /*
- * This file is part of the TYPO3.TYPO3CR package.
+ * This file is part of the Neos.ContentRepository package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -11,11 +11,11 @@ namespace TYPO3\TYPO3CR\Tests\Unit\Domain\Service\ImportExport;
  * source code.
  */
 
-use TYPO3\Flow\Property\PropertyMapper;
-use TYPO3\Flow\Security\Context;
-use TYPO3\Flow\Tests\UnitTestCase;
-use TYPO3\Flow\Utility\Now;
-use TYPO3\TYPO3CR\Domain\Service\ImportExport\NodeImportService;
+use Neos\Flow\Property\PropertyMapper;
+use Neos\Flow\Security\Context;
+use Neos\Flow\Tests\UnitTestCase;
+use Neos\Flow\Utility\Now;
+use Neos\ContentRepository\Domain\Service\ImportExport\NodeImportService;
 
 class NodeImportServiceTest extends UnitTestCase
 {
@@ -56,7 +56,7 @@ class NodeImportServiceTest extends UnitTestCase
 
         $expectedNodeData = array(
             'identifier' => '995c9174-ddd6-4d5c-cfc0-1ffc82184677',
-            'nodeType' => 'TYPO3.Neos.NodeTypes:Page',
+            'nodeType' => 'Neos.NodeTypes:Page',
             'workspace' => 'live',
             'sortingIndex' => 100,
             'version' => 14,
@@ -94,7 +94,7 @@ class NodeImportServiceTest extends UnitTestCase
             }
             throw new \Exception('Target type ' . $targetType . ' not supported in property mapper mock');
         }));
-        $this->mockPropertyMapper->expects($this->any())->method('getMessages')->willReturn(new \TYPO3\Flow\Error\Result());
+        $this->mockPropertyMapper->expects($this->any())->method('getMessages')->willReturn(new \Neos\Error\Messages\Result());
 
         $nodeImportService->import($xmlReader, '/');
 
@@ -122,7 +122,7 @@ class NodeImportServiceTest extends UnitTestCase
         $this->inject($nodeImportService, 'securityContext', $this->mockSecurityContext);
 
         $expectedNodeData = array(
-            'nodeType' => 'TYPO3.Neos.NodeTypes:Page',
+            'nodeType' => 'Neos.NodeTypes:Page',
             'workspace' => 'live',
             'sortingIndex' => 100,
             'version' => 14,
@@ -177,7 +177,7 @@ class NodeImportServiceTest extends UnitTestCase
         $expectedNodeDatas = array(
             array(
                 'identifier' => '995c9174-ddd6-4d5c-cfc0-1ffc82184677',
-                'nodeType' => 'TYPO3.Neos.NodeTypes:Page',
+                'nodeType' => 'Neos.NodeTypes:Page',
                 'workspace' => 'live',
                 'sortingIndex' => '100',
                 'version' => '14',
@@ -194,7 +194,7 @@ class NodeImportServiceTest extends UnitTestCase
                     'uriPathSegment' => 'home',
                     'image' =>
                         array(
-                            'targetType' => \TYPO3\Media\Domain\Model\ImageVariant::class,
+                            'targetType' => \Neos\Media\Domain\Model\ImageVariant::class,
                             'source' =>
                                 array(
                                     'originalImage' =>
@@ -252,7 +252,7 @@ class NodeImportServiceTest extends UnitTestCase
             ),
             array(
                 'identifier' => 'e45e3b2c-3f14-2c14-6230-687fa4696504',
-                'nodeType' => 'TYPO3.Neos.NodeTypes:AssetList',
+                'nodeType' => 'Neos.NodeTypes:AssetList',
                 'workspace' => 'live',
                 'sortingIndex' => '300',
                 'version' => '3',
@@ -266,7 +266,7 @@ class NodeImportServiceTest extends UnitTestCase
                 'properties' => array(
                     'assets' => array(
                         0 => array(
-                            'targetType' => \TYPO3\Media\Domain\Model\Image::class,
+                            'targetType' => \Neos\Media\Domain\Model\Image::class,
                             'source' =>
                                 array(
                                     'title' => '',
@@ -279,7 +279,7 @@ class NodeImportServiceTest extends UnitTestCase
                                 ),
                         ),
                         1 => array(
-                            'targetType' => \TYPO3\Media\Domain\Model\Asset::class,
+                            'targetType' => \Neos\Media\Domain\Model\Asset::class,
                             'source' =>
                                 array(
                                     'title' => '',
@@ -311,7 +311,7 @@ class NodeImportServiceTest extends UnitTestCase
                 'source' => $source
             );
         }));
-        $this->mockPropertyMapper->expects($this->any())->method('getMessages')->willReturn(new \TYPO3\Flow\Error\Result());
+        $this->mockPropertyMapper->expects($this->any())->method('getMessages')->willReturn(new \Neos\Error\Messages\Result());
 
         $nodeImportService->import($xmlReader, '/');
 
@@ -345,7 +345,7 @@ class NodeImportServiceTest extends UnitTestCase
         $expectedNodeDatas = array(
             array(
                 'identifier' => 'e45e3b2c-3f14-2c14-6230-687fa4696504',
-                'nodeType' => 'TYPO3.Neos.NodeTypes:Page',
+                'nodeType' => 'Neos.NodeTypes:Page',
                 'workspace' => 'live',
                 'sortingIndex' => '300',
                 'version' => '3',
@@ -403,8 +403,8 @@ class NodeImportServiceTest extends UnitTestCase
 
         $this->assertTrue($result);
 
-        /** @var \TYPO3\TYPO3CR\Domain\Service\ImportExport\NodeImportService $nodeImportService */
-        $nodeImportService = $this->getMockBuilder(\TYPO3\TYPO3CR\Domain\Service\ImportExport\NodeImportService::class)->setMethods(array('persistNodeData'))->getMock();
+        /** @var \Neos\ContentRepository\Domain\Service\ImportExport\NodeImportService $nodeImportService */
+        $nodeImportService = $this->getMockBuilder(\Neos\ContentRepository\Domain\Service\ImportExport\NodeImportService::class)->setMethods(array('persistNodeData'))->getMock();
         $this->inject($nodeImportService, 'propertyMapper', $this->mockPropertyMapper);
         $this->inject($nodeImportService, 'securityContext', $this->mockSecurityContext);
 
@@ -426,7 +426,7 @@ class NodeImportServiceTest extends UnitTestCase
                 'source' => $source
             );
         }));
-        $this->mockPropertyMapper->expects($this->any())->method('getMessages')->willReturn(new \TYPO3\Flow\Error\Result());
+        $this->mockPropertyMapper->expects($this->any())->method('getMessages')->willReturn(new \Neos\Error\Messages\Result());
 
         $nodeImportService->import($xmlReader, '/');
 

@@ -1,11 +1,17 @@
 <?php
-namespace TYPO3\Flow\Core\Migrations;
+namespace Neos\Flow\Core\Migrations;
 
 /**
  * Migrates to new super type syntax in node type configuration
  */
 class Version20150510103823 extends AbstractMigration
 {
+
+    public function getIdentifier()
+    {
+        return 'TYPO3.TYPO3CR-20150510103823';
+    }
+
     /**
      * @return void
      */

@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\TYPO3CR\Tests\Unit;
+namespace Neos\ContentRepository\Tests\Unit;
 
 /*
- * This file is part of the TYPO3.TYPO3CR package.
+ * This file is part of the Neos.ContentRepository package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -11,8 +11,8 @@ namespace TYPO3\TYPO3CR\Tests\Unit;
  * source code.
  */
 
-use TYPO3\Flow\Tests\UnitTestCase;
-use TYPO3\TYPO3CR\Utility;
+use Neos\Flow\Tests\UnitTestCase;
+use Neos\ContentRepository\Utility;
 
 /**
  */

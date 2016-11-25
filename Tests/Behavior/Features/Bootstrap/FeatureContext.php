@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the TYPO3.TYPO3CR package.
+ * This file is part of the Neos.ContentRepository package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -13,18 +13,18 @@
 require_once(__DIR__ . '/../../../../../../Application/Flowpack.Behat/Tests/Behat/FlowContext.php');
 require_once(__DIR__ . '/NodeOperationsTrait.php');
 require_once(__DIR__ . '/NodeAuthorizationTrait.php');
-require_once(__DIR__ . '/../../../../../../Framework/TYPO3.Flow/Tests/Behavior/Features/Bootstrap/IsolatedBehatStepsTrait.php');
-require_once(__DIR__ . '/../../../../../../Framework/TYPO3.Flow/Tests/Behavior/Features/Bootstrap/SecurityOperationsTrait.php');
+require_once(__DIR__ . '/../../../../../../Framework/Neos.Flow/Tests/Behavior/Features/Bootstrap/IsolatedBehatStepsTrait.php');
+require_once(__DIR__ . '/../../../../../../Framework/Neos.Flow/Tests/Behavior/Features/Bootstrap/SecurityOperationsTrait.php');
 
 use Flowpack\Behat\Tests\Behat\FlowContext;
-use TYPO3\Flow\ObjectManagement\ObjectManagerInterface;
-use TYPO3\Flow\Tests\Behavior\Features\Bootstrap\IsolatedBehatStepsTrait;
-use TYPO3\Flow\Tests\Behavior\Features\Bootstrap\SecurityOperationsTrait;
-use TYPO3\Flow\Utility\Environment;
-use TYPO3\TYPO3CR\Domain\Service\NodeTypeManager;
-use TYPO3\TYPO3CR\Service\AuthorizationService;
-use TYPO3\TYPO3CR\Tests\Behavior\Features\Bootstrap\NodeAuthorizationTrait;
-use TYPO3\TYPO3CR\Tests\Behavior\Features\Bootstrap\NodeOperationsTrait;
+use Neos\Flow\ObjectManagement\ObjectManagerInterface;
+use Neos\Flow\Tests\Behavior\Features\Bootstrap\IsolatedBehatStepsTrait;
+use Neos\Flow\Tests\Behavior\Features\Bootstrap\SecurityOperationsTrait;
+use Neos\Flow\Utility\Environment;
+use Neos\ContentRepository\Domain\Service\NodeTypeManager;
+use Neos\ContentRepository\Service\AuthorizationService;
+use Neos\ContentRepository\Tests\Behavior\Features\Bootstrap\NodeAuthorizationTrait;
+use Neos\ContentRepository\Tests\Behavior\Features\Bootstrap\NodeOperationsTrait;
 
 /**
  * Features context
@@ -39,7 +39,7 @@ class FeatureContext extends \Behat\Behat\Context\BehatContext
     /**
      * @var string
      */
-    protected $behatTestHelperObjectName = \TYPO3\TYPO3CR\Tests\Functional\Command\BehatTestHelper::class;
+    protected $behatTestHelperObjectName = \Neos\ContentRepository\Tests\Functional\Command\BehatTestHelper::class;
 
     /**
      * Initializes the context

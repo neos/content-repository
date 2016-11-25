@@ -1,11 +1,11 @@
 <?php
-namespace TYPO3\Flow\Persistence\Doctrine\Migrations;
+namespace Neos\Flow\Persistence\Doctrine\Migrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
- * Add migration status table for TYPO3.TYPO3CR
+ * Add migration status table for Neos.ContentRepository
  */
 class Version20120829124550 extends AbstractMigration
 {
