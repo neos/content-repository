@@ -1,4 +1,0 @@
-'Neos.Seo:TitleTagMixin':
-  properties:
-    titleOverride:
-      validation: ~
