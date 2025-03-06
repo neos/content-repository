@@ -1086,7 +1086,7 @@ class NodeData extends AbstractNodeData
 
         // If the node is marked to be removed but didn't exist in a base workspace yet, we can delete it for real, without creating a shadow node.
         // This optimization cannot be made for shadow nodes which are moved.
-        if ($nodeData->isRemoved() && $nodeData->getMovedTo() === null && $this->nodeDataRepository->findOneByIdentifier($nodeData->getIdentifier(), $this->workspace->getBaseWorkspace()) === null) {
+        if ($nodeData->isRemoved() && $nodeData->getMovedTo() === null && $this->nodeDataRepository->findOneByIdentifier($nodeData->getIdentifier(), $this->workspace->getBaseWorkspace(), removedNodes: true) === null) {
             if ($this->persistenceManager->isNewObject($nodeData) === false) {
                 $this->nodeDataRepository->remove($nodeData);
             }
