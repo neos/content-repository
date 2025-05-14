@@ -23,10 +23,11 @@ final class Version20230430183156 extends AbstractMigration
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MysqlPlatform'."
         );
 
-        $this->skipIf(!$schema->getTable('neos_contentrepository_domain_model_nodedata')->hasIndex('IDX_CE6515692D45FE4D')
-            && $schema->getTable('neos_contentrepository_domain_model_nodedata')->hasIndex('UNIQ_CE6515692D45FE4D'),
-            "Skipped index renaming because they are already named properly"
-        );
+        if(!$schema->getTable('neos_contentrepository_domain_model_nodedata')->hasIndex('IDX_CE6515692D45FE4D')
+            && $schema->getTable('neos_contentrepository_domain_model_nodedata')->hasIndex('UNIQ_CE6515692D45FE4D')
+        ){
+            return;
+        }
 
         $this->addSql('ALTER TABLE neos_contentrepository_domain_model_nodedata DROP INDEX IDX_CE6515692D45FE4D, ADD UNIQUE INDEX UNIQ_CE6515692D45FE4D (movedto)');
     }
@@ -38,10 +39,11 @@ final class Version20230430183156 extends AbstractMigration
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MysqlPlatform'."
         );
 
-        $this->skipIf($schema->getTable('neos_contentrepository_domain_model_nodedata')->hasIndex('IDX_CE6515692D45FE4D')
-            && !$schema->getTable('neos_contentrepository_domain_model_nodedata')->hasIndex('UNIQ_CE6515692D45FE4D'),
-            "Skipped index renaming because they are already named properly"
-        );
+        if($schema->getTable('neos_contentrepository_domain_model_nodedata')->hasIndex('IDX_CE6515692D45FE4D')
+            && !$schema->getTable('neos_contentrepository_domain_model_nodedata')->hasIndex('UNIQ_CE6515692D45FE4D')
+        ) {
+            return;
+        }
 
         $this->addSql('ALTER TABLE neos_contentrepository_domain_model_nodedata DROP INDEX UNIQ_CE6515692D45FE4D, ADD INDEX IDX_CE6515692D45FE4D (movedto)');
     }
