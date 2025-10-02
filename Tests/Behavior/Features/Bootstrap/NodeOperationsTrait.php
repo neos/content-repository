@@ -78,8 +78,11 @@ trait NodeOperationsTrait
     #[BeforeScenario('@fixtures')]
     public function beforeScenarioDispatcher()
     {
+        $prev = $this->isolated;
+        $this->isolated = false;
         $this->resetNodeInstances();
         $this->resetContentDimensions();
+        $this->isolated = $prev;
     }
 
     /**
@@ -904,11 +907,7 @@ trait NodeOperationsTrait
     #[AfterScenario('@fixtures')]
     public function resetCustomNodeTypes()
     {
-        if ($this->isolated === true) {
-            $this->callStepInSubProcess(__METHOD__);
-        } else {
-            $this->getObjectManager()->get(NodeTypeManager::class)->overrideNodeTypes([]);
-        }
+        $this->getObjectManager()->get(NodeTypeManager::class)->overrideNodeTypes([]);
     }
 
     /**
