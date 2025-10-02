@@ -17,14 +17,14 @@ require_once(__DIR__ . '/../../../../../../Framework/Neos.Flow/Tests/Behavior/Fe
 
 use Behat\Behat\Context\Context;
 use Neos\Behat\Tests\Behat\FlowContextTrait;
-use Neos\ContentRepository\Tests\Functional\Command\BehatTestHelper;
-use Neos\Flow\Tests\Behavior\Features\Bootstrap\IsolatedBehatStepsTrait;
-use Neos\Flow\Tests\Behavior\Features\Bootstrap\SecurityOperationsTrait;
-use Neos\Flow\Utility\Environment;
 use Neos\ContentRepository\Domain\Service\NodeTypeManager;
 use Neos\ContentRepository\Service\AuthorizationService;
 use Neos\ContentRepository\Tests\Behavior\Features\Bootstrap\NodeAuthorizationTrait;
 use Neos\ContentRepository\Tests\Behavior\Features\Bootstrap\NodeOperationsTrait;
+use Neos\ContentRepository\Tests\Functional\Command\BehatTestHelper;
+use Neos\Flow\Tests\Behavior\Features\Bootstrap\IsolatedBehatStepsTrait;
+use Neos\Flow\Tests\Behavior\Features\Bootstrap\SecurityOperationsTrait;
+use Neos\Flow\Utility\Environment;
 
 /**
  * Features context
@@ -36,6 +36,11 @@ class FeatureContext implements Context
     use NodeAuthorizationTrait;
     use SecurityOperationsTrait;
     use IsolatedBehatStepsTrait;
+
+    private function getObject(string $className): object
+    {
+        return $this->objectManager->get($className);
+    }
 
     /**
      * @var string
