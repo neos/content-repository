@@ -89,8 +89,8 @@ class NodeImportServiceTest extends UnitTestCase
             return true;
         }));
         $this->mockPropertyMapper->expects(self::any())->method('convert')->will(self::returnCallback(function ($source, $targetType) {
-            if ($targetType === 'DateTime') {
-                return new \DateTime($source);
+            if ($targetType === 'DateTimeImmutable') {
+                return new \DateTimeImmutable($source);
             }
             throw new \Exception('Target type ' . $targetType . ' not supported in property mapper mock');
         }));
