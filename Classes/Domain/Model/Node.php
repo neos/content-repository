@@ -2013,6 +2013,14 @@ class Node implements NodeInterface, CacheAwareInterface, TraversableNodeInterfa
     }
 
     /**
+     * @throws \Exception
+     */
+    public function getAggregateId(): NodeAggregateIdentifier
+    {
+        return $this->getNodeAggregateIdentifier();
+    }
+
+    /**
      * @return NodeTypeName
      * @throws NodeTypeNotFoundException
      */
