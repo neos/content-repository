@@ -209,9 +209,11 @@
 'Neos.ContentRepository.Testing:NodeTypeWithPlainLabelInChildNode':
   childNodes:
     child:
+      type: 'Neos.ContentRepository.Testing:Content'
       label: 'Test child node'
 
 'Neos.ContentRepository.Testing:NodeTypeWithEelExpressionLabelInChildNode':
   childNodes:
     child:
+      type: 'Neos.ContentRepository.Testing:Content'
       label: '${"Test" + " child " + "node"}'

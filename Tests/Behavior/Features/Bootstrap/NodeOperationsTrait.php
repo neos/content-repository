@@ -13,6 +13,8 @@ namespace Neos\ContentRepository\Tests\Behavior\Features\Bootstrap;
  */
 
 use Behat\Gherkin\Node\PyStringNode;
+use Behat\Hook\AfterScenario;
+use Behat\Hook\BeforeScenario;
 use Neos\ContentRepository\Domain\Factory\NodeFactory;
 use Neos\ContentRepository\Domain\Model\Workspace;
 use Neos\ContentRepository\Domain\Repository\ContentDimensionRepository;
@@ -71,13 +73,16 @@ trait NodeOperationsTrait
     }
 
     /**
-     * @BeforeScenario @fixtures
      * @return void
      */
+    #[BeforeScenario('@fixtures')]
     public function beforeScenarioDispatcher()
     {
+        $prev = $this->isolated;
+        $this->isolated = false;
         $this->resetNodeInstances();
         $this->resetContentDimensions();
+        $this->isolated = $prev;
     }
 
     /**
@@ -899,16 +904,10 @@ trait NodeOperationsTrait
         }
     }
 
-    /**
-     * @AfterScenario @fixtures
-     */
+    #[AfterScenario('@fixtures')]
     public function resetCustomNodeTypes()
     {
-        if ($this->isolated === true) {
-            $this->callStepInSubProcess(__METHOD__);
-        } else {
-            $this->getObjectManager()->get(NodeTypeManager::class)->overrideNodeTypes([]);
-        }
+        $this->getObjectManager()->get(NodeTypeManager::class)->overrideNodeTypes([]);
     }
 
     /**

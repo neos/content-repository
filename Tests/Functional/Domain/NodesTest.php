@@ -1118,8 +1118,8 @@ class NodesTest extends FunctionalTestCase
         $nodeWithPlainLabelInChildNode = $rootNode->createNode('node-plain', $nodeTypeWithPlainLabelInChildNode, '30e893c1-caef-0ca5-b53d-e5699bb8e506');
         $nodeWithEelExpressionLabelInChildNode = $rootNode->createNode('node-eel', $nodeTypeWithEelExpressionLabelInChildNode, '81c848ed-abb5-7608-a5db-7eea0331ccfa');
 
-        self::assertEquals('Test child node', $nodeWithPlainLabelInChildNode->getLabel());
-        self::assertEquals('Test child node', $nodeWithEelExpressionLabelInChildNode->getLabel());
+        self::assertEquals('Test child node', $nodeWithPlainLabelInChildNode->getNode('child')->getLabel());
+        self::assertEquals('Test child node', $nodeWithEelExpressionLabelInChildNode->getNode('child')->getLabel());
     }
 
     /**

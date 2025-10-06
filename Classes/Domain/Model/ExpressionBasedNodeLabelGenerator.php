@@ -83,6 +83,6 @@ class ExpressionBasedNodeLabelGenerator implements NodeLabelGeneratorInterface
         if (Utility::parseEelExpression($expression) === null) {
             return $expression;
         }
-        return (string)Utility::evaluateEelExpression($this->getExpression(), $this->eelEvaluator, ['node' => $node], $this->defaultContextConfiguration);
+        return (string)Utility::evaluateEelExpression($expression, $this->eelEvaluator, ['node' => $node], $this->defaultContextConfiguration);
     }
 }
