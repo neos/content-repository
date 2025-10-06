@@ -388,6 +388,11 @@ abstract class AbstractNodeData
         return $this->nodeTypeManager->getNodeType($this->nodeType);
     }
 
+    public function getRealNodeTypeNameWithoutFallback(): string
+    {
+        return $this->nodeType;
+    }
+
     /**
      * @return \DateTime
      */
