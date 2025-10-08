@@ -1981,6 +1981,15 @@ class Node implements NodeInterface, CacheAwareInterface, TraversableNodeInterfa
         return false;
     }
 
+    public function getClassification(): NodeAggregateClassification
+    {
+        return match (true) {
+            $this->isRoot() => NodeAggregateClassification::CLASSIFICATION_ROOT,
+            $this->isTethered() => NodeAggregateClassification::CLASSIFICATION_TETHERED,
+            default => NodeAggregateClassification::CLASSIFICATION_REGULAR
+        };
+    }
+
     /**
      * Set the status of the associated NodeData in regards to the Context.
      *
