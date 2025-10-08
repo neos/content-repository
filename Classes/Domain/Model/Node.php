@@ -937,18 +937,11 @@ class Node implements NodeInterface, CacheAwareInterface, TraversableNodeInterfa
             return null;
         }
 
-        if (empty($value) || !$nodeType->hasConfiguration('properties.' . $propertyName)) {
-            // forward compatibility to Neos 9 where those properties will just be simple properties - we do the fallback only if the properties are sure to not exist in the node type.
-            if ($propertyName === 'enableAfterDateTime') {
-                return $this->getHiddenBeforeDateTime();
-            }
-            if ($propertyName === 'disableAfterDateTime') {
-                return $this->getHiddenAfterDateTime();
-            }
-            if ($propertyName === 'hiddenInMenu') {
-                return $this->isHiddenInIndex();
-            }
+        if (empty($value)) {
+            return $value;
+        }
 
+        if (!$nodeType->hasConfiguration('properties.' . $propertyName)) {
             return $value;
         }
 

@@ -83,7 +83,20 @@ class PropertyOperation extends AbstractOperation
                 return ObjectAccess::getPropertyPath($element, substr($propertyPath, 1));
             } else {
                 /* @var NodeInterface $element */
-                return $element->getProperty($propertyPath);
+                $value = $element->getProperty($propertyPath);
+                if ($value === null) {
+                    // forward compatibility to Neos 9 where those properties will just be simple properties - we do the fallback only if the properties are sure to not exist.
+                    if ($propertyPath === 'enableAfterDateTime') {
+                        return $element->getHiddenBeforeDateTime();
+                    }
+                    if ($propertyPath === 'disableAfterDateTime') {
+                        return $element->getHiddenAfterDateTime();
+                    }
+                    if ($propertyPath === 'hiddenInMenu') {
+                        return $element->isHiddenInIndex();
+                    }
+                }
+                return $value;
             }
         }
     }
