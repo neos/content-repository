@@ -501,6 +501,12 @@ class Node implements NodeInterface, CacheAwareInterface, TraversableNodeInterfa
         return $this->nodeData->getWorkspace();
     }
 
+    public function getWorkspaceName(): string
+    {
+        // forward compatibility to 9.0 in fusion. Though it's hard to get this right. We don't use $this->nodeData->getWorkspace()->getName(); as this would return the location where the node is stored and not the current workspace.
+        return $this->context->getWorkspaceName();
+    }
+
     /**
      * Returns the identifier of this node
      *
