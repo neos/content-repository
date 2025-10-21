@@ -1730,6 +1730,8 @@ class NodeDataRepository extends Repository
                         $parameters['asset' . $identifierIndex] = '%asset:\/\/' . strtolower($relatedIdentifier) . '%';
                         break;
                     default:
+                        // As we don't use real JSON fields in MySql platform, we have the slashes escaped with a backslash in the database field.
+                        // So we need to escape the backslashes in the search.
                         $parameters['asset' . $identifierIndex] = '%asset:\\\\/\\\\/' . strtolower($relatedIdentifier) . '%';
                 }
 
