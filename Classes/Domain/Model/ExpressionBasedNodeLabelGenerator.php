@@ -14,6 +14,7 @@ namespace Neos\ContentRepository\Domain\Model;
 use Neos\Eel\EelEvaluatorInterface;
 use Neos\Eel\Utility;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\I18n\EelHelper\TranslationHelper;
 use Neos\Flow\ObjectManagement\DependencyInjection\DependencyProxy;
 
 /**
@@ -33,6 +34,12 @@ class ExpressionBasedNodeLabelGenerator implements NodeLabelGeneratorInterface
      * @var array
      */
     protected $defaultContextConfiguration;
+
+    /**
+     * @Flow\Inject
+     * @var TranslationHelper
+     */
+    protected $translationHelper;
 
     /**
      * @var string
@@ -73,6 +80,7 @@ class ExpressionBasedNodeLabelGenerator implements NodeLabelGeneratorInterface
     public function getLabel(\Neos\ContentRepository\Domain\Projection\Content\NodeInterface $node): string
     {
         $expression = $this->getExpression();
+
         if ($node->isAutoCreated()) {
             $parentNode = $node->getParent();
             $property = 'childNodes.' . $node->getName() . '.label';
@@ -80,7 +88,11 @@ class ExpressionBasedNodeLabelGenerator implements NodeLabelGeneratorInterface
                 $expression = $parentNode->getNodeType()->getConfiguration($property);
             }
         }
+
         if (Utility::parseEelExpression($expression) === null) {
+            if($node->isAutoCreated()) {
+                return $this->translationHelper->translate($expression);
+            }
             return $expression;
         }
         return (string)Utility::evaluateEelExpression($expression, $this->eelEvaluator, ['node' => $node], $this->defaultContextConfiguration);
