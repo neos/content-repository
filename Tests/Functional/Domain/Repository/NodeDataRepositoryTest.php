@@ -11,6 +11,7 @@ namespace Neos\ContentRepository\Tests\Functional\Domain\Repository;
  * source code.
  */
 
+use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Neos\Flow\Tests\Functional\Persistence\Fixtures;
 use Neos\Flow\Tests\Functional\Persistence\Fixtures\Image;
 use Neos\Flow\Tests\FunctionalTestCase;
@@ -20,6 +21,7 @@ use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
 use Neos\ContentRepository\Domain\Service\Context;
 use Neos\ContentRepository\Domain\Service\ContextFactoryInterface;
 use Neos\ContentRepository\Domain\Service\NodeTypeManager;
+use Doctrine\DBAL\Connection;
 
 /**
  * Functional test case.
@@ -115,6 +117,14 @@ class NodeDataRepositoryTest extends FunctionalTestCase
      */
     public function findNodesByRelatedEntitiesFindsExistingNodeWithMatchingAssetLink()
     {
+        $databasePlatform = $this->objectManager->get(Connection::class)->getDatabasePlatform();
+        if ($databasePlatform instanceof MySqlPlatform &&  $databasePlatform->hasNativeJsonType()) {
+            // The test suite generates the schema based on the current feature set of the database platform.
+            // But in the real world the database schema is created by migrations which have set the JSON fields as longtext.
+            // This mismatch of the field types breaks this test, as the findNodesByRelatedEntities internally relies on a string value to query for MySQL.
+            $this->markTestSkipped('Skipping test because the database platform does support JSON fields, but the schema is not compatible with the test suite.');
+        }
+
         $rootNode = $this->context->getRootNode();
         $newNode = $rootNode->createNode('test', $this->nodeTypeManager->getNodeType('Neos.ContentRepository.Testing:Text'));
 
