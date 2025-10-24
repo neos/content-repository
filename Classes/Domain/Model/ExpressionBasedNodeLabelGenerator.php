@@ -90,7 +90,7 @@ class ExpressionBasedNodeLabelGenerator implements NodeLabelGeneratorInterface
         }
 
         if (Utility::parseEelExpression($expression) === null) {
-            if($node->isAutoCreated()) {
+            if ($node->isAutoCreated()) {
                 return $this->translationHelper->translate($expression);
             }
             return $expression;
